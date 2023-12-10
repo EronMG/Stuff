@@ -1,5 +1,7 @@
 import { useCity } from "../context/CityContext";
-
+const convertToFahrenheit = (celsius) => {
+  return (celsius * 9) / 5 + 32;
+};
 const WeatherInfo = ({ label, value, img }) => (
   <div className="flex  md:flex-row md:items-center gap-2 md:gap-5 justify-between">
     <p className="text-black font-roboto text-[14px] mb-2 md:mb-0 sm:text-[18px]">
@@ -19,7 +21,7 @@ const WeatherInfo = ({ label, value, img }) => (
 );
 
 const Weather = () => {
-  const { weatherData, loading, error } = useCity();
+  const { weatherData, loading, error, degrece } = useCity();
 
   if (loading) {
     return <p>Loading...</p>;
@@ -30,19 +32,27 @@ const Weather = () => {
   }
 
   return (
-    <div className="flex flex-col gap-3 md:gap-[30px] mt-20">
-      <h2 className="text-primary font-roboto text-[14px] uppercase flex justify-center mb-2 sm:text-[18px]">
+    <div className="flex flex-col gap-3 md:gap-[30px] mt-20 md:mt-0">
+      <h2 className="text-primary font-roboto text-[14px] uppercase flex justify-center mb-2 sm:text-[18px] md:justify-start">
         {weatherData.weather[0].main}
       </h2>
       <WeatherInfo
         img="/src/assets/TempMax.svg"
         label="Temp max"
-        value={`${Math.round(weatherData.main.temp_max)}°`}
+        value={`${Math.round(
+          degrece === "metric"
+            ? weatherData.main.temp_max
+            : convertToFahrenheit(weatherData.main.temp_max)
+        )}${degrece === "metric" ? "°C" : "°F"}`}
       />
       <WeatherInfo
         img="./src/assets/TempMin.svg"
         label="Temp min"
-        value={`${Math.round(weatherData.main.temp_min)}°`}
+        value={`${Math.round(
+          degrece === "metric"
+            ? weatherData.main.temp_min
+            : convertToFahrenheit(weatherData.main.temp_min)
+        )}${degrece === "metric" ? "°C" : "°F"}`}
       />
       <WeatherInfo
         img="/src/assets/outline.svg"

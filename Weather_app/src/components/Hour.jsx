@@ -5,8 +5,12 @@ import { IoMdCloudy } from "react-icons/io";
 import { WiDayLightning } from "react-icons/wi";
 import { MdFoggy } from "react-icons/md";
 import { FaRegSnowflake } from "react-icons/fa";
+
+const convertToFahrenheit = (celsius) => {
+  return (celsius * 9) / 5 + 32;
+};
 const Hour = () => {
-  const { weatherData1, loading, error } = useCity();
+  const { weatherData1, loading, error, degrece } = useCity();
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -14,56 +18,22 @@ const Hour = () => {
   if (error) {
     return <p>{JSON.stringify(error)}</p>;
   }
-  const timing = [
-    {
-      id: 1,
-      time: "09:00",
-      weath: weatherData1.list[0].weather[0].main,
-      temp: weatherData1.list[0].main.temp,
-    },
-    {
-      id: 2,
-      time: "12:00",
-      weath: weatherData1.list[1].weather[0].main,
-      temp: weatherData1.list[1].main.temp,
-    },
-    {
-      id: 3,
-      time: "15:00",
-      weath: weatherData1.list[2].weather[0].main,
-      temp: weatherData1.list[2].main.temp,
-    },
-    {
-      id: 4,
-      time: "18:00",
-      weath: weatherData1.list[3].weather[0].main,
-      temp: weatherData1.list[3].main.temp,
-    },
-    {
-      id: 5,
-      time: "21:00",
-      weath: weatherData1.list[4].weather[0].main,
-      temp: weatherData1.list[4].main.temp,
-    },
-    {
-      id: 6,
-      time: "00:00",
-      weath: weatherData1.list[5].weather[0].main,
-      temp: weatherData1.list[5].main.temp,
-    },
-    {
-      id: 7,
-      time: "03:00",
-      weath: weatherData1.list[6].weather[0].main,
-      temp: weatherData1.list[6].main.temp,
-    },
-    {
-      id: 8,
-      time: "06:00",
-      weath: weatherData1.list[7].weather[0].main,
-      temp: weatherData1.list[7].main.temp,
-    },
-  ];
+  const timing = [];
+
+  for (let i = 0; i < 8; i++) {
+    const time = `${(i * 3) % 24}:00`;
+    const weatherIndex = i % weatherData1.list.length;
+
+    timing.push({
+      id: i + 1,
+      time,
+      weath: weatherData1.list[weatherIndex].weather[0].main,
+      temp:
+        degrece === "metric"
+          ? weatherData1.list[weatherIndex].main.temp
+          : convertToFahrenheit(weatherData1.list[weatherIndex].main.temp),
+    });
+  }
 
   const getIcon = (weatherCondition, time) => {
     if (time >= 0 && time < 6) {
@@ -99,8 +69,8 @@ const Hour = () => {
     }
   };
   return (
-    <div className="flex flex-col gap-[54px] mt-10">
-      <h2 className="text-primary font-roboto text-[18px] flex justify-center">
+    <div className="flex flex-col gap-[54px] mt-0">
+      <h2 className="text-primary font-roboto text-[18px] flex justify-center md:justify-start">
         Today’s Weather Forecast...
       </h2>
       <div className="flex flex-col gap-[30px]">
@@ -119,8 +89,8 @@ const Hour = () => {
               </h2>
               <p className="text-black font-roboto text-[18px]">{item.weath}</p>
             </div>
-            <p className="text-black font-roboto text-[24px]">
-              {Math.round(item.temp)}
+            <p className="text-black font-roboto text-[24px] w-[58px]">
+              {Math.round(item.temp)} {degrece === "metric" ? "°C" : "°F"}
             </p>
           </div>
         ))}

@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useCity } from "../context/CityContext";
 import Blur from "./Blur";
 import Input from "./Input";
+import MyMap from "./Map";
 
 const MainScreen = () => {
-  const { weatherData, weatherData1 } = useCity();
+  const { weatherData } = useCity();
   const [city, setCity] = useState("");
   useEffect(() => {
     if (
@@ -37,19 +38,19 @@ const MainScreen = () => {
   }
   return (
     <div
-      className="Main h-[100vh] absolute w-full justify-between flex flex-col md:flex-row overflow-y-auto"
+      className="Main h-[100vh] absolute w-full justify-between flex flex-col md:flex-row "
       style={{
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="px-[22px] py-[19px] flex flex-col items-end gap-[90px]">
+      <div className="px-[22px] py-[19px] flex flex-col items-end gap-[90px] md:justify-end">
         <div className="md:hidden">
           {" "}
           <Input />
         </div>
-
+        <MyMap />
         <div className="flex flex-row items-center gap-[10px] w-full">
           <h1 className="font-roboto text-primary text-[64px] sm:text-[120px]">
             {weatherData ? Math.round(weatherData.main.temp) : "..."}°
