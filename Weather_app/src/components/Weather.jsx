@@ -40,7 +40,7 @@ const Weather = () => {
         value={`${Math.round(weatherData.main.temp_max)}°`}
       />
       <WeatherInfo
-        img="/src/assets/TempMin.svg"
+        img="./src/assets/TempMin.svg"
         label="Temp min"
         value={`${Math.round(weatherData.main.temp_min)}°`}
       />
