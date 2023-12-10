@@ -14,13 +14,6 @@
     box-sizing: border-box;
 }
 
-.Main {
-    background-image: url(../src/assets/Winter1.jpeg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 .blur {
     border-left: 5px solid rgba(255, 255, 255, 0.14);
     background: rgba(255, 255, 255, 0.04);

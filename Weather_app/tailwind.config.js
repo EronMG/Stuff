@@ -9,6 +9,7 @@ export const theme = {
             dimWhite: "rgba(255, 255, 255, 0.7)",
             dimBlue: "rgba(9, 151, 124, 0.1)",
             black: 'rgba(255, 255, 255, 0.70)',
+            black1: 'rgba(255, 255, 255, 0.14)',
         },
         fontFamily: {
             roboto: ['Roboto', 'sans-serif'],
