@@ -13,20 +13,20 @@ const Blur = () => {
             {" "}
             <button
               onClick={handleToggleCelsius}
-              className={`border-[3px] border-primary rounded-[15px] px-[20px] text-primary active:scale-95 ${
+              className={`border-[3px] border-primary rounded-[15px] text-[black] px-[20px]  active:scale-95 ${
                 degrece === "metric"
                   ? "bg-primary text-[black]"
-                  : "bg-none  hover:bg-primary transition hover:text-[black]"
+                  : "bg-none  hover:bg-primary transition hover:text-[black] text-primary"
               }`}
             >
               °C
             </button>
             <button
               onClick={handleToggleFahrenheit}
-              className={`border-[3px] border-primary rounded-[15px] px-[20px] text-primary active:scale-95 ${
+              className={`border-[3px] border-primary rounded-[15px] px-[20px] text-[black] active:scale-95 ${
                 degrece === "imperial"
                   ? "bg-primary text-[black]"
-                  : "bg-none hover:bg-primary transition hover:text-[black]"
+                  : "bg-none hover:bg-primary transition hover:text-[black] text-primary"
               }`}
             >
               °F

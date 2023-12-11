@@ -65,20 +65,20 @@ const MainScreen = () => {
             {" "}
             <button
               onClick={handleToggleCelsius}
-              className={`border-[3px] border-primary rounded-[15px] px-[15px] text-primary active:scale-95 sm:px-[20px] ${
+              className={`border-[3px] border-primary rounded-[15px] px-[15px] text-[black]  active:scale-95 sm:px-[20px] sm:rounded-[20px] ${
                 degrece === "metric"
                   ? "bg-primary text-[black]"
-                  : "bg-none  hover:bg-primary transition hover:text-[black]"
+                  : "bg-none  hover:bg-primary transition hover:text-[black] text-primary"
               }`}
             >
               °C
             </button>
             <button
               onClick={handleToggleFahrenheit}
-              className={`border-[3px] border-primary rounded-[15px] px-[15px] text-primary active:scale-95 sm:px-[20px] sm:rounded-[20px] ${
+              className={`border-[3px] border-primary rounded-[15px] px-[15px] text-[black]  active:scale-95 sm:px-[20px] sm:rounded-[20px] ${
                 degrece === "imperial"
                   ? "bg-primary text-[black]"
-                  : "bg-none hover:bg-primary transition hover:text-[black]"
+                  : "bg-none hover:bg-primary transition hover:text-[black] text-primary"
               }`}
             >
               °F
