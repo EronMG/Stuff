@@ -48,22 +48,30 @@ const MyMap = () => {
   }
   const initialCenter = weatherData
     ? [weatherData.coord.lat, weatherData.coord.lon]
-    : [7.606, -122.332];
+    : [47.606, -122.332];
   return (
-    <div>
+    <div className="hidden md:flex flex-col">
       <MapContainer
         center={initialCenter}
         zoom={8}
         scrollWheelZoom={true}
-        style={{ height: "200px", width: "200px" }}
+        style={{
+          height: "200px",
+          width: "200px",
+          borderRadius: "10px",
+          opacity: "11px",
+        }}
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <TileLayer
-          url={`https://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=bc2069a7f9f2508b86bb74053e5eaeec`}
+          url={`https://tile.openweathermap.org/map/temp_new/{z}/{x}/{y}.png?appid=bc2069a7f9f2508b86bb74053e5eaeec`}
           opacity={0.6}
           zIndex={2}
         />
       </MapContainer>
+      <p className="text-primary opacity-70 flex justify-center">
+        Temperature map
+      </p>
     </div>
   );
 };

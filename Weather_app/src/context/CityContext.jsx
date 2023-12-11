@@ -16,7 +16,6 @@ export const CityProvider = ({ children }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [weatherData1, setWeatherData1] = useState(null);
   const [degrece, setDegrece] = useState("metric");
-  const [precipitationData, setPrecipitationData] = useState([]);
 
   const handleCity = useCallback((e) => {
     setCity(e.target.value);
@@ -30,7 +29,6 @@ export const CityProvider = ({ children }) => {
       const apiKey = "bc2069a7f9f2508b86bb74053e5eaeec";
       const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
       const apiUrl1 = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
-      const apiMap = `https://maps.openweathermap.org/maps/2.0/radar/6/13/24?&appid=${apiKey}&tm=1600781400`;
       const response = await axios.get(apiUrl);
       const response1 = await axios.get(apiUrl1);
 

@@ -5,6 +5,7 @@ import Input from "./Input";
 import MyMap from "./Map";
 
 const MainScreen = () => {
+  const { handleToggleCelsius, handleToggleFahrenheit, degrece } = useCity();
   const { weatherData } = useCity();
   const [city, setCity] = useState("");
   useEffect(() => {
@@ -45,10 +46,44 @@ const MainScreen = () => {
         backgroundPosition: "center",
       }}
     >
-      <div className="px-[22px] py-[19px] flex flex-col items-end gap-[90px] md:justify-end">
-        <div className="md:hidden">
+      <div className="px-[22px] py-[19px] flex flex-col  gap-[90px] md:justify-between items-start">
+        {/* <div className="flex flex-row gap-[15px] pt-[100px]">
+          <div className="backdrop-filter backdrop-blur-md w-[200px] h-[200px] rounded-[30px]">
+            123123
+          </div>
+          <div className="backdrop-filter backdrop-blur-md w-[200px] h-[200px] rounded-[30px]"></div>
+          <div className="backdrop-filter backdrop-blur-md w-[200px] h-[200px] rounded-[30px]"></div>
+          <div className="backdrop-filter backdrop-blur-md w-[200px] h-[200px] rounded-[30px]"></div>
+          <div className="backdrop-filter backdrop-blur-md w-[200px] h-[200px] rounded-[30px]"></div>
+          <div className="backdrop-filter backdrop-blur-md w-[200px] h-[200px] rounded-[30px]"></div>
+          <div className="backdrop-filter backdrop-blur-md w-[200px] h-[200px] rounded-[30px]"></div>
+        </div> */}
+        <div className="md:hidden flex gap-[20px]">
           {" "}
           <Input />
+          <div className=" flex-row gap-[20px] flex md:hidden">
+            {" "}
+            <button
+              onClick={handleToggleCelsius}
+              className={`border-[3px] border-primary rounded-[15px] px-[15px] text-primary active:scale-95 sm:px-[20px] ${
+                degrece === "metric"
+                  ? "bg-primary text-[black]"
+                  : "bg-none  hover:bg-primary transition hover:text-[black]"
+              }`}
+            >
+              °C
+            </button>
+            <button
+              onClick={handleToggleFahrenheit}
+              className={`border-[3px] border-primary rounded-[15px] px-[15px] text-primary active:scale-95 sm:px-[20px] sm:rounded-[20px] ${
+                degrece === "imperial"
+                  ? "bg-primary text-[black]"
+                  : "bg-none hover:bg-primary transition hover:text-[black]"
+              }`}
+            >
+              °F
+            </button>
+          </div>
         </div>
         <MyMap />
         <div className="flex flex-row items-center gap-[10px] w-full">

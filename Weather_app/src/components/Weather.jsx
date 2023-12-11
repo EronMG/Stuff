@@ -1,4 +1,5 @@
 import { useCity } from "../context/CityContext";
+import PropTypes from "prop-types";
 const convertToFahrenheit = (celsius) => {
   return (celsius * 9) / 5 + 32;
 };
@@ -19,7 +20,11 @@ const WeatherInfo = ({ label, value, img }) => (
     </div>
   </div>
 );
-
+WeatherInfo.propTypes = {
+  label: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
+  img: PropTypes.string.isRequired,
+};
 const Weather = () => {
   const { weatherData, loading, error, degrece } = useCity();
 
